@@ -1,19 +1,18 @@
-# 🌍 Cloud Detection using Sentinel-3 and Deep Learning
+#  Cloud Detection using Sentinel-3 and Deep Learning
 
-# 📋 Table of Contents
+#  Table of Contents
 
 1. [About the Project](#about-the-project)  
    ├─ [Background](#background)  
    ├─ [The Sentinel-3 Satellite](#the-sentinel-3-satellite)  
    └─ [Environmental Cost Assessment](#environmental-cost-assessment)  
-2. [Dataset](#dataset)  
-3. [Usage](#usage)  
-4. [Acknowledgments](#acknowledgments)  
-5. [References](#references)  
+2. [Dataset](#dataset)   
+3. [Acknowledgments](#acknowledgments)  
+4. [References](#references)  
 
 ---
 
-## 📌 About the Project
+##  About the Project
 
 This project is part of the final assignment for the AI4EO course at UCL, which applies artificial intelligence to Earth observation problems. It focuses on detecting cloud cover using Sentinel-3 satellite data and supervised learning models such as Convolutional Neural Networks (CNNs) and Random Forests (RFs).
 
@@ -21,17 +20,17 @@ By developing a classification system, we aim to generate accurate cloud masks f
 
 ---
 
-## 📖 Background
+##  Background
 
-Cloud detection in Earth observation is crucial for atmospheric correction, climate analysis, and environmental monitoring. Clouds can obscure surface features and reduce the quality of optical satellite data.
+Clouds have a significant impact on the planet's energy balance, climate, and weather. They serve as the primary temperature regulator and function as a blanket to absorb thermal energy or longwave radiation (Alblooshi et al., 2023). Cloud detection in Earth observation is crucial for atmospheric correction, climate analysis, and environmental monitoring. Clouds can obscure surface features and reduce the quality of optical satellite data. 
 
 AI models have been increasingly applied to automate cloud detection, improving speed and accuracy. This project applies two supervised models—CNN and Random Forest—on Sentinel-3 imagery to classify each pixel as cloud or clear.
 
 ---
 
-## 🛰️ The Sentinel-3 Satellite
+##  The Sentinel-3 Satellite
 
-Sentinel-3 is a European Earth observation satellite launched under the Copernicus Programme. It provides multi-instrument measurements from a polar orbit, covering both ocean and land surfaces. 
+Sentinel-3 is an Earth observation satellite constellation launched by the European Space Agency. Each satellite carries two optical multispectral instruments: the Ocean and Land Colour Instrument (OLCI) and the Sea and Land Surface Temperature Radiometer (SLSTR). OLCI and SLSTR sensors produce images covering the visible and infrared spectrum that can be collocated in order to generate synergistic products (Fernandez-Moran et al., 2021).
 
 ### Instruments:
 - **OLCI**: Measures water and land color, vegetation, and cloud properties.
@@ -52,50 +51,41 @@ Sentinel-3 is a European Earth observation satellite launched under the Copernic
 
 ---
 
-## 🌱 Environmental Cost Assessment
+## Environmental Cost Assessment
 
-This project uses CNN and RF models trained on Sentinel-3 data for cloud detection. Training the CNN model in Google Colab for 10 epochs consumes about **0.05 kg CO₂e** (based on GPU runtime and electricity carbon intensity). The RF model is less accurate but requires significantly less computational power.
+This research prioritizes environmental sustainability through:
 
-### Measures taken to reduce environmental impact:
-- Used only a subset of the dataset
-- Limited CNN training to 10 epochs
-- Leveraged Colab's free tier GPU with lower-carbon infrastructure
-- Minimized data I/O and storage overhead using Google Drive
+- **Use of open-access data** (Copernicus Sentinel-3) instead of bespoke missions, minimizing emissions.
+- **Minimal computational footprint** by running models on Google Colab, which utilizes shared cloud resources.
+- **Efficient models**: Random Forest is lightweight; CNN training was limited to a small patch set with early stopping to reduce unnecessary computation.
+- **Digital-only outputs**: all results are shared via GitHub, avoiding material waste.
 
-This project demonstrates the importance of balancing accuracy and environmental efficiency when selecting and deploying AI models.
+Overall, the project demonstrates how AI and EO can be combined responsibly with minimal carbon overhead.
+
 
 ---
 
-## 📂 Dataset
+##  Dataset
 
 The Sentinel-3 OLCI L1B data used in this project was downloaded from the [Copernicus Open Access Hub](https://dataspace.copernicus.eu/). Data was processed into 21-band reflectance arrays and cloud masks labeled with IRIS.
 
 We used a small spatial chunk for model training and evaluation, preserving general cloud features while reducing compute load.
 
----
-
-## ⚙️ Usage
-
-1. Run `preprocess.ipynb` to prepare image and mask data  
-2. Use `cnn_model.ipynb` or `rf_model.ipynb` to train and evaluate  
-3. Output images and confusion matrices are saved automatically  
-
-Each model outputs a binary classification map and evaluation metrics (accuracy, confusion matrix).
+Raw dataset from Copernicus Sentinel-3: S3A_OL_1_EFR____20230621T105847_20230621T110147_20230622T120215_0180_100_151_1980_PS1_O_NT_003.SEN3
 
 ---
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
-This project was developed for the AI4EO module at University College London (UCL), supervised by **Dr. Michel Tsamados** and **Weibin Chen**.
+- totony4real https://github.com/totony4real/GEOL0069-AI4EO.git
+- Copernicus Sentinel-3 data used under the European Space Agency (ESA) data policy.
 
 ---
 
-## 📚 References
+##  References
 
-- Copernicus Sentinel-3 Overview: https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-3  
-- ESA Sentinel Online - OLCI Instrument: https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-3-olci  
-- Lacoste, P., et al. (2015). The Copernicus Sentinel-3 mission. *ESA Bulletin*, 163, 26–33.  
-- Strub, M., et al. (2019). Cloud masking in multispectral satellite imagery using AI. *Remote Sensing of Environment*, 231, 111251.  
+- Alblooshi, M.A.M., Kalathingal, S.H., Mirza, S.B. and Ridouane, F.L., 2023. Assessment and Classification of Cloud Coverage Using K-Means Clustering Algorithm for the Sentinel-3 LST Data: A Case Study in the Fujairah Region. American Journal of Remote Sensing, 11(2), pp.32-35.    
+- Fernandez-Moran, R., Gómez-Chova, L., Alonso, L., Mateo-García, G. and López-Puigdollers, D., 2021. Towards a novel approach for Sentinel-3 synergistic OLCI/SLSTR cloud and cloud shadow detection based on stereo cloud-top height estimation. ISPRS Journal of Photogrammetry and Remote Sensing, 181, pp.238-253.
 
 ---
 
