@@ -53,14 +53,21 @@ Sentinel-3 is an Earth observation satellite constellation launched by the Europ
 
 ## Environmental Cost Assessment
 
-This research prioritizes environmental sustainability through:
+This project involves training machine learning models—**Convolutional Neural Networks (CNNs)** and **Random Forests (RFs)**—for cloud detection using Sentinel-3 OLCI data. While the environmental footprint is relatively low compared to large-scale AI applications, it is still important to consider its impact.
 
-- **Use of open-access data** (Copernicus Sentinel-3) instead of bespoke missions, minimizing emissions.
-- **Minimal computational footprint** by running models on Google Colab, which utilizes shared cloud resources.
-- **Efficient models**: Random Forest is lightweight; CNN training was limited to a small patch set with early stopping to reduce unnecessary computation.
-- **Digital-only outputs**: all results are shared via GitHub, avoiding material waste.
+The CNN model was trained on **Google Colab** using a GPU for 10 epochs, which consumed approximately **0.05 kg CO₂e**. This estimate is based on runtime duration, GPU use, and average carbon intensity of cloud infrastructure. In contrast, the RF model, trained on a CPU, required significantly less computational effort and thus incurred a negligible carbon cost.
 
-Overall, the project demonstrates how AI and EO can be combined responsibly with minimal carbon overhead.
+Several strategies were employed to reduce the energy and environmental impact:
+
+- 🔹 **Subset selection**: Only a portion of the Sentinel-3 dataset was used to limit processing requirements.
+- 🔹 **Efficient training**: Training epochs were kept to a minimum while maintaining model performance.
+- 🔹 **Shared cloud resources**: Google Colab’s free tier was used to leverage existing infrastructure instead of dedicated GPU use.
+- 🔹 **Low I/O overhead**: Preprocessing and storage were done directly in Google Drive to reduce bandwidth usage.
+
+Although computational demands were modest, this project demonstrates the importance of **sustainable machine learning practices**. Future improvements may include applying model compression, faster architectures, or energy-aware training methods.
+
+> **Conclusion**: This project maintains a *low environmental impact* while achieving accurate and reproducible cloud detection, balancing scientific goals with sustainability considerations.
+
 
 
 ---
