@@ -47,7 +47,7 @@ Sentinel-3 is an Earth observation satellite constellation launched by the Europ
 - **Spatial resolution**: 300 m  
 
 ![Image](https://github.com/user-attachments/assets/ac35a764-c6ae-402b-806a-1b5f86be6aae) 
-*Figure 2. Sentinel-3 observation diagram showing orbit, instruments, and push-broom imaging.*
+*Figure 1. Sentinel-3 observation diagram showing orbit, instruments, and push-broom imaging.*
 
 ---
 
@@ -69,7 +69,7 @@ Overall, the project demonstrates how AI and EO can be combined responsibly with
 
 The Sentinel-3 OLCI L1B data used in this project was downloaded from the [Copernicus Open Access Hub](https://dataspace.copernicus.eu/). Data was processed into 21-band reflectance arrays and cloud masks labeled with IRIS.
 
-We used a small spatial chunk for model training and evaluation, preserving general cloud features while reducing compute load.
+Using a small spatial chunk for model training and evaluation, preserving general cloud features while reducing compute load.
 
 Raw dataset from Copernicus Sentinel-3: S3A_OL_1_EFR____20230621T105847_20230621T110147_20230622T120215_0180_100_151_1980_PS1_O_NT_003.SEN3
 
