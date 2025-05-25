@@ -46,7 +46,7 @@ Sentinel-3 is an Earth observation satellite constellation launched by the Europ
 - **Spectral bands**: 21 (400–1020 nm)  
 - **Spatial resolution**: 300 m  
 
-![How Sentinel-3 Observes the Earth](Image.png)  
+![Image](https://github.com/user-attachments/assets/ac35a764-c6ae-402b-806a-1b5f86be6aae) 
 *Figure 2. Sentinel-3 observation diagram showing orbit, instruments, and push-broom imaging.*
 
 ---
