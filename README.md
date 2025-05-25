@@ -1,6 +1,6 @@
 # 🌍 Cloud Detection using Sentinel-3 and Deep Learning
 
-## 📋 Table of Contents
+# 📋 Table of Contents
 
 1. [About the Project](#about-the-project)  
    ├─ [Background](#background)  
