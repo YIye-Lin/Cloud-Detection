@@ -1,10 +1,11 @@
 # 🌍 Cloud Detection using Sentinel-3 and Deep Learning
 
-## 📑 Table of Contents
-1. [About The Project](#about-the-project)  
+## 📋 Table of Contents
+
+1. [About the Project](#about-the-project)  
    ├─ [Background](#background)  
    ├─ [The Sentinel-3 Satellite](#the-sentinel-3-satellite)  
-   ├─ [Environmental Cost Assessment](#environmental-cost-assessment)  
+   └─ [Environmental Cost Assessment](#environmental-cost-assessment)  
 2. [Dataset](#dataset)  
 3. [Usage](#usage)  
 4. [Acknowledgments](#acknowledgments)  
@@ -12,61 +13,89 @@
 
 ---
 
-## 📌 About The Project
+## 📌 About the Project
 
-This project is part of the final assignment for the AI4EO course at UCL, which applies artificial intelligence to Earth observation problems. It focuses on detecting cloud cover using Sentinel-3 satellite data and supervised learning models such as Convolutional Neural Networks (CNNs) and Random Forests (RFs). 
+This project is part of the final assignment for the AI4EO course at UCL, which applies artificial intelligence to Earth observation problems. It focuses on detecting cloud cover using Sentinel-3 satellite data and supervised learning models such as Convolutional Neural Networks (CNNs) and Random Forests (RFs).
 
 By developing a classification system, we aim to generate accurate cloud masks from multispectral input imagery and evaluate model performance using confusion matrices and classification maps.
 
 ---
 
-## 🌐 Background
+## 📖 Background
 
-Cloud detection is a fundamental preprocessing step in many satellite remote sensing applications, including land cover classification and climate monitoring. Sentinel-3 OLCI (Ocean and Land Colour Instrument) provides 21 spectral bands that are suitable for distinguishing clouds from other atmospheric or surface features.
+Cloud detection in Earth observation is crucial for atmospheric correction, climate analysis, and environmental monitoring. Clouds can obscure surface features and reduce the quality of optical satellite data.
 
-Recent advances in machine learning and AI have enabled more accurate, scalable, and automatic cloud masking. This project compares traditional ensemble learning (RF) with deep learning (CNN) approaches to assess accuracy and spatial pattern fidelity using real Sentinel-3 imagery.
+AI models have been increasingly applied to automate cloud detection, improving speed and accuracy. This project applies two supervised models—CNN and Random Forest—on Sentinel-3 imagery to classify each pixel as cloud or clear.
 
 ---
 
 ## 🛰️ The Sentinel-3 Satellite
 
-Sentinel-3 is part of the Copernicus Programme by ESA and is equipped with the OLCI sensor, offering 21 bands of reflectance data at 300m resolution. This satellite monitors land and ocean colour, sea surface temperature, and atmospheric parameters.
+Sentinel-3 is a European Earth observation satellite launched under the Copernicus Programme. It provides multi-instrument measurements from a polar orbit, covering both ocean and land surfaces. 
 
-The OLCI push-broom sensor captures Earth’s reflectance by sweeping across track with a wide field of view, enabling consistent multi-band observations.
+### Instruments:
+- **OLCI**: Measures water and land color, vegetation, and cloud properties.
+- **SLSTR**: Records sea and land surface temperatures.
+- **SRAL**: Radar altimetry for sea level and ice thickness.
+- **SYNERGY**: Combines OLCI + SLSTR data for improved land monitoring.
 
-![How Sentinel-3 Works](An_educational_infographic_titled_"How_Does_Sentin.png)
+### Orbit & Imaging:
+- **Altitude**: 814.5 km  
+- **Inclination**: 98.65°  
+- **Revisit time**: ~2 days at equator  
+- **Swath width**: ~1270 km  
+- **Spectral bands**: 21 (400–1020 nm)  
+- **Spatial resolution**: 300 m  
+
+![How Sentinel-3 Observes the Earth](Image.png)  
+*Figure 2. Sentinel-3 observation diagram showing orbit, instruments, and push-broom imaging.*
 
 ---
 
 ## 🌱 Environmental Cost Assessment
 
-This research prioritizes environmental sustainability through:
+This project uses CNN and RF models trained on Sentinel-3 data for cloud detection. Training the CNN model in Google Colab for 10 epochs consumes about **0.05 kg CO₂e** (based on GPU runtime and electricity carbon intensity). The RF model is less accurate but requires significantly less computational power.
 
-- **Use of open-access data** (Copernicus Sentinel-3) instead of bespoke missions, minimizing emissions.
-- **Minimal computational footprint** by running models on Google Colab, which utilizes shared cloud resources.
-- **Efficient models**: Random Forest is lightweight; CNN training was limited to a small patch set with early stopping to reduce unnecessary computation.
-- **Digital-only outputs**: all results are shared via GitHub, avoiding material waste.
+### Measures taken to reduce environmental impact:
+- Used only a subset of the dataset
+- Limited CNN training to 10 epochs
+- Leveraged Colab's free tier GPU with lower-carbon infrastructure
+- Minimized data I/O and storage overhead using Google Drive
 
-Overall, the project demonstrates how AI and EO can be combined responsibly with minimal carbon overhead.
-
----
-
-## 🗂 Dataset
-
-We used OLCI Level-1B Top-of-Atmosphere reflectance data from Sentinel-3, extracted over cloud-covered regions using manual labels from IRIS.
-
-- **Input:** 21-band reflectance arrays from `.npy` files  
-- **Target:** Hand-labeled binary masks (Cloud = 1, Clear = 0)  
-- **Preprocessing:** Patch extraction (3x3 spatial window × 21 bands)
-
-Two chunk files were used, spanning ~4,000×1,000 pixels each. Data was balanced and split 90/10 for training/testing.
+This project demonstrates the importance of balancing accuracy and environmental efficiency when selecting and deploying AI models.
 
 ---
 
-## ▶️ Usage
+## 📂 Dataset
 
-Please see the `notebook.ipynb` file for full code.  
-Run in Google Colab or locally with Python 3.8+ and the following packages:
+The Sentinel-3 OLCI L1B data used in this project was downloaded from the [Copernicus Open Access Hub](https://dataspace.copernicus.eu/). Data was processed into 21-band reflectance arrays and cloud masks labeled with IRIS.
 
-```bash
-pip install numpy matplotlib tensorflow scikit-learn opencv-python netCDF4
+We used a small spatial chunk for model training and evaluation, preserving general cloud features while reducing compute load.
+
+---
+
+## ⚙️ Usage
+
+1. Run `preprocess.ipynb` to prepare image and mask data  
+2. Use `cnn_model.ipynb` or `rf_model.ipynb` to train and evaluate  
+3. Output images and confusion matrices are saved automatically  
+
+Each model outputs a binary classification map and evaluation metrics (accuracy, confusion matrix).
+
+---
+
+## 🙏 Acknowledgments
+
+This project was developed for the AI4EO module at University College London (UCL), supervised by **Dr. Michel Tsamados** and **Weibin Chen**.
+
+---
+
+## 📚 References
+
+- Copernicus Sentinel-3 Overview: https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-3  
+- ESA Sentinel Online - OLCI Instrument: https://sentinels.copernicus.eu/web/sentinel/technical-guides/sentinel-3-olci  
+- Lacoste, P., et al. (2015). The Copernicus Sentinel-3 mission. *ESA Bulletin*, 163, 26–33.  
+- Strub, M., et al. (2019). Cloud masking in multispectral satellite imagery using AI. *Remote Sensing of Environment*, 231, 111251.  
+
+---
+
